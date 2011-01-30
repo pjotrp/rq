@@ -7,8 +7,10 @@ SYNOPSIS
 URIS
 
   http://rubyforge.org/projects/codeforpeople/
-  http://codeforpeople.com/lib/ruby/rq/
   http://www.linuxjournal.com/article/7922
+  https://github.com/ahoward/rq
+  https://github.com/pjotrp/rq 
+  http://codeforpeople.com/lib/ruby/rq/ (old tgz)
 
 INSTALL
 

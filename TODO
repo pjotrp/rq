@@ -1,5 +1,6 @@
 ---
 
+- migrate to Ruby1.9 (problem is the posixlock module)
 - confine/constrain mechansim
 - heartbeat to slave
 - ls show elapsed time
