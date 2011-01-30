@@ -52,8 +52,10 @@ DESCRIPTION
   functionality such as priority management, predicate and sql query , compact
   streaming command-line processing, programmable api, hot-backup, and
   input/capture of the stdin/stdout/stderr io streams of remote jobs.  to date
-  rq has had no reported runtime failures and is in operation at dozens of
-  research centers around the world.
+  rq has had no reported runtime failures and is in operation at
+  dozens of research centers around the world. While rq is written in
+  the beatiful Ruby programming language, there is no Ruby programming
+  involved in using rq.
 
 INVOCATION
 
