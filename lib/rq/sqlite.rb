@@ -30,7 +30,7 @@ require 'base64'
 
 # The SQLite module defines the classes and objects needed to interface with a
 # SQLite database.
-module SQLite
+module SQLite3
 
   # The Database class represents a single SQLite database.
   class Database
@@ -77,7 +77,7 @@ module SQLite
       result = nil
       execute( sql ) do |row|
         result = row
-        SQLite::ABORT
+        SQLite3::ABORT
       end
       result
     end
@@ -88,7 +88,7 @@ module SQLite
       result = nil
       execute( sql ) do |row|
         result = row[0]
-        SQLite::ABORT
+        SQLite3::ABORT
       end
       result
     end

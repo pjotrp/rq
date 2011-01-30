@@ -91,7 +91,7 @@ unless defined? $__rq__
     begin
       $:.unshift ARCHLIBDIR 
       $:.unshift LIBDIR  
-      require 'sqlite'
+      require 'sqlite3'
     rescue LoadError
       abort "require sqlite - http://raa.ruby-lang.org/project/sqlite-ruby/"
     ensure
