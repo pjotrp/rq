@@ -1,5 +1,6 @@
 #!/usr/bin/env /usr/bin/ruby1.8
 
+$: << '/usr/share/rq-ruby1.8/lib'
 # 
 # === the rq program
 # 
