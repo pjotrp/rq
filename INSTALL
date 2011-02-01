@@ -12,7 +12,8 @@ which resolves dependencies, or
 
 The second option is to build and install once and distribute through
 NFS. Use the tgz installation, which includes an ./all/ directory. On 
-modern systems your mileage may vary.
+modern systems your mileage may vary as the Ruby build breaks on gcc 
+version >4.4
 
   * Unpack rq-ver.tgz file
   
@@ -34,13 +35,13 @@ modern systems your mileage may vary.
 
 === RUBYGEMS
 
-(currently defunct, awaits updating rq to Ruby 1.9.x)
+(currently defunct, awaits updating rq to Ruby 1.9.x and sqlite3)
 
   * gem install rq
 
 === STANDARD
 
-(untested in 3.4.1)
+(in rq version <=3.4.0)
 
   * install all packages in ./depends/packages manually
 
