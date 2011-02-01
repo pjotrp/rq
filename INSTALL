@@ -1,12 +1,42 @@
 === Debian
 
-The recommended procedure is to use Debian apt on all machines.
+On Debian systems, the recommended procedure is to use Debian apt on all 
+machines
 
   * apt-get install rq-ruby1.8
 
-which resolves dependencies, or 
+which resolves all dependencies, or alternatively 
 
-  * dpkg -i rq-ruby1.8-ver.deb
+
+  * Download the deb file from https://github.com/pjotrp/rq/tree/debian 
+  * apt-get install libposixlock-ruby1.8 libsqlite3-ruby1.8 ruby1.8 
+  * dpkg --force-architecture -i rq-ruby1.8-ver.deb
+
+on 32-bits and 64-bits systems. The commands
+
+  * rq ~/queue create
+  * rq ~/queue status
+
+should show
+
+        jobs: 
+          pending: 0
+          holding: 0
+          running: 0
+          finished: 0
+          dead: 0
+          total: 0
+        temporal: {}
+        performance: 
+          avg_time_per_job: 00h00m00.00s
+          n_jobs_in_last_hrs: 
+            1: 0
+            12: 0
+            24: 0
+        exit_status: 
+          successes: 0
+          failures: 0
+          ok: 0
 
 === NFS central
 
