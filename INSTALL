@@ -7,12 +7,11 @@ machines
 
 which resolves all dependencies, or alternatively 
 
-
-  * Download the deb file from https://github.com/pjotrp/rq/tree/debian 
+  * Download the rq deb file from http://bio4.dnsalias.net/download/Debian/
   * apt-get install libposixlock-ruby1.8 libsqlite3-ruby1.8 ruby1.8 
   * dpkg --force-architecture -i rq-ruby1.8-ver.deb
 
-on 32-bits and 64-bits systems. The commands
+which works on on 32-bits and 64-bits systems. The commands
 
   * rq ~/queue create
   * rq ~/queue status
