@@ -93,6 +93,9 @@ unless defined? $__rq__
       $:.unshift LIBDIR
       $:.unshift '/var/lib/gems/1.8/gems/sqlite-ruby-2.2.3/lib/'
       require 'sqlite'
+      require 'sqlite/version'
+      print("SQLite.version=",SQLite::Version::STRING,"\n")
+
     rescue LoadError
       p $:
       abort "require sqlite in load path - http://raa.ruby-lang.org/project/sqlite-ruby/"
