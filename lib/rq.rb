@@ -90,10 +90,12 @@ unless defined? $__rq__
     ENV['LD_LIBRARY_PATH'] = [LOCALLIBDIR, ENV['LD_LIBRARY_PATH']].join(':')
     begin
       $:.unshift ARCHLIBDIR 
-      $:.unshift LIBDIR  
+      $:.unshift LIBDIR
+      $:.unshift '/var/lib/gems/1.8/gems/sqlite-ruby-2.2.3/lib/'
       require 'sqlite'
     rescue LoadError
-      abort "require sqlite - http://raa.ruby-lang.org/project/sqlite-ruby/"
+      p $:
+      abort "require sqlite in load path - http://raa.ruby-lang.org/project/sqlite-ruby/"
     ensure
       $:.shift
       $:.shift
