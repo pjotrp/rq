@@ -85,7 +85,7 @@ unless defined? $__rq_jobrunner__
 
         command =
           if @sh_like 
-            sin = "0<#{ @stdin }" if @stdin
+            sin = "0<#{ @stdin }" if @stdin and File.exist?(@stdin)
             sout = "1>#{ @stdout }" if @stdout
             serr = "2>#{ @stderr }" if @stderr
             "( PATH=#{ path }:$PATH #{ command } ;) #{ sin } #{ sout } #{ serr }"
