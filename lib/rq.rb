@@ -91,10 +91,11 @@ unless defined? $__rq__
     begin
       $:.unshift ARCHLIBDIR 
       $:.unshift LIBDIR
-      $:.unshift '/var/lib/gems/1.8/gems/sqlite-ruby-2.2.3/lib/'
+      $:.unshift '/var/lib/gems/1.8/gems/sqlite-1.3.1/lib'
+
       require 'sqlite'
-      require 'sqlite/version'
-      print("SQLite.version=",SQLite::Version::STRING,"\n")
+      # require 'sqlite/version'
+      # print("SQLite.version=",SQLite::Version::STRING,"\n")
 
     rescue LoadError
       p $:
