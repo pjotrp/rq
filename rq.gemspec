@@ -19,6 +19,8 @@ Gem::Specification.new do |s|
     "TODO"
   ]
   s.files = [
+    "Gemfile",
+    "Gemfile.lock",
     "INSTALL",
     "LICENSE",
     "Makefile",
@@ -76,6 +78,7 @@ Gem::Specification.new do |s|
     "lib/rq/usage.rb",
     "lib/rq/util.rb",
     "rdoc.sh",
+    "rq.gemspec",
     "test/.gitignore",
     "test/test_rq.rb",
     "white_box/crontab",
