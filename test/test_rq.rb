@@ -7,6 +7,8 @@
 
 require 'yaml'
 
+print "rq integration test suite by Pjotr Prins 2011\n"
+
 src = File.join('..',File.dirname(__FILE__))
 $rq = File.join(src,'bin','rq');
 raise "Run from test folder!" if !File.executable?($rq)
@@ -98,4 +100,13 @@ end
 print `rm -rf #{$queue}`
 
 # Done!
-print "All tests passed!"
+print <<MSG
+
+Congratulations, all tests passed!
+
+This means rq accepts and executes jobs. Note, the tests 
+are not exhaustive, but passing them is a good sign.
+
+MSG
+
+
