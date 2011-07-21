@@ -37,6 +37,17 @@ def test_equal(line,s1,s2)
   error(line,"#{s1} does not equal #{s2}") if s1 != s2
 end
 
+def kill_rq()
+  pstab = `ps xau|grep rq`
+  pstab.grep(/#{$rq}/) do | s |
+    error(__LINE__,"Still running "+s)
+  end
+  pstab.grep(/rq_jobrunnerdaemon/) do | s |
+    error(__LINE__,"Still running "+s)
+  end
+end
+
+
 # Check dependencies
 print "Running tests...\n"
 
@@ -47,6 +58,8 @@ gempath = '/var/lib/gems/1.8/gems/sqlite-1.3.1/lib'
 error("Expect "+gempath) if !File.directory?(gempath)
 $:.unshift gempath
 require 'sqlite'
+
+kill_rq()
 
 # In the first step we set up the queue
 print `rm -rf #{$queue}`
@@ -79,23 +92,27 @@ p status
 test_equal(__LINE__,status["jobs"]['total'],2)
 
 # Now add longer jobs
-rq_exec('submit "sleep 4"')
+rq_exec('submit "sleep 6"')
+sleep(1)
 status = rq_status()
 test_equal(__LINE__,status['jobs']['pending']+status['jobs']['running'],1)
-rq_exec('submit "sleep 4"')
+rq_exec('submit "sleep 6"')
 p rq_status()
 test_equal(__LINE__,rq_status()['jobs']['total'],4)
+
+# Delete last job
+rq_exec('delete 4')
+sleep(2)
+print "\n---\n"
+print rq_exec('query state=pending')
+p rq_status
 
 # Kill rq
 rq_exec('shutdown')
 status = rq_status()
-test_equal(__LINE__,status['jobs']['pending']+status['jobs']['running'],2)
+test_equal(__LINE__,status['jobs']['pending']+status['jobs']['running'],1)
 sleep(2)
-pstab = `ps xau|grep rq`
-# print pstab
-pstab.grep("runner|#{$rq}") do | s |
-  error(__LINE__,"Still running "+s)
-end
+kill_rq()
 
 print `rm -rf #{$queue}`
 
