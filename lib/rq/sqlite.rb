@@ -1,27 +1,20 @@
 # --------------------------------------------------------------------------
 # sqlite.rb -- ruby interface for enhancing the core SQLite routines
-# Copyright (C) 2003 Jamis Buck (jgb3@email.byu.edu)
+# Copyright (C) 2003,2004 Jamis Buck (jamis@jamisbuck.org)
 # --------------------------------------------------------------------------
 # This file is part of the SQLite ruby interface.
 # 
 # The SQLite/Ruby Interface is free software; you can redistribute it and/or
-# modify  it  under the terms of the GNU General Public License as published
-# by  the  Free  Software  Foundation;  either  version 2 of the License, or
-# (at your option) any later version.
-# 
+# modify  it  under the terms of the BSD License as published by  the  Free
+# Software  Foundation. See also the rq LICENSE file.
+#
 # The SQLite/Ruby Interface is distributed in the hope that it will be useful,
 # but   WITHOUT   ANY   WARRANTY;  without  even  the  implied  warranty  of
-# MERCHANTABILITY  or  FITNESS  FOR  A  PARTICULAR  PURPOSE.   See  the  GNU
-# General Public License for more details.
-# 
-# You  should  have  received  a  copy  of  the  GNU  General Public License
-# along with the SQLite/Ruby Interface;  if  not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# MERCHANTABILITY  or  FITNESS  FOR  A  PARTICULAR  PURPOSE.
 # --------------------------------------------------------------------------
 # This defines further enhancements to the SQLite::Database class.
 #
-# Author: Jamis Buck (jgb3@email.byu.edu)
-# Date: June 2003
+# Author: Jamis Buck (jamis@jamisbuck.org)
 # --------------------------------------------------------------------------
 
 require '_sqlite'
