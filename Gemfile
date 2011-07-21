@@ -10,7 +10,7 @@ source "http://rubygems.org"
 gem "posixlock"
 gem "arrayfields"
 gem "lockfile"
-gem "sqlite"
+# gem "sqlite-1.3.1"  # on rubygems?
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.

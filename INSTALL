@@ -84,12 +84,16 @@ version >4.4
 
 === From source (github)
 
-The current version of rq runs on ruby1.8. 
+The current version of rq runs on ruby1.8, using bundler and jeweler:
 
-gem1.8 install bundler
-Successfully installed bundler-1.0.15
+  gem1.8 install bundler
+  Successfully installed bundler-1.0.15
 
-gem1.8 install jeweler
-Successfully installed jeweler-1.6.4
-
+  gem1.8 install jeweler
+  Successfully installed jeweler-1.6.4
+ 
+  git clone https://pjotrp@github.com/pjotrp/rq.git
+  cd rq/
+  rake gemspec
+  rake build  # creates gem in ./pkg
 
