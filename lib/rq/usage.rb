@@ -117,7 +117,7 @@ INSTALL
     - cd rq-X-X-X
     - cd all
     - ./install.sh /full/path/to/nfs/mounted/directory/
-    (note, breaks on gcc 4.4 and later)
+    (note, out of date and breaks on gcc 4.4 and later)
 
   debian flavours:
 
@@ -125,10 +125,15 @@ INSTALL
 
   gems (per node):
 
-    - install sqlite
-    - gem1.8 install sqlite-ruby
-    - gem1.8 install rq # Ruby 1.8 only
-    (note, may be broken because it needs old sqlite.h)
+    gem >=3.4.2:
+
+      - install sqlite2 (Debian apt-get install libsqlite0-dev)
+      - wget http://rubyforge.org/frs/download.php/1070/sqlite-1.3.1.gem
+      - gem1.8 install sqlite-1.3.1.gem
+      - gem1.8 install posixlock
+      - gem1.8 install arrayfields
+      - gem1.8 install lockfile
+      - gem1.8 install rq-ruby1.8
 
 DESCRIPTION
 
@@ -1067,6 +1072,7 @@ MODES
         ~> rq help
 
 NOTES
+
   - realize that your job is going to be running on a remote host and this has
     implications.  paths, for example, should be absolute, not relative.
     specifically the submitted job script must be visible from all hosts
@@ -1117,6 +1123,7 @@ NOTES
     script which can assist you.  beer donations required as payment.
 
 ENVIRONMENT
+
   RQ_Q: set to the full path of nfs mounted queue
 
     the queue argument to all commands may be omitted if, and only if, the
@@ -1158,10 +1165,12 @@ ENVIRONMENT
     actual command line options wil always override options given this way
 
 DIAGNOSTICS
+
  success : $? == 0
  failure : $? != 0
 
 CREDITS
+
   - kim baugh       : patient tester and design input
   - jeff safran     : the guy can break anything
   - chris elvidge   : boss who made it possible 
@@ -1171,17 +1180,17 @@ CREDITS
   - matz            : for writing ruby
 
 INSTALL
-  manual (cluster wide):
-
-    - download latest release from URI(S) above
-    - tar xvfz rq-X.X.X.tgz
-    - cd rq-X-X-X.tgz
-    - cd all
-    - ./install.sh /full/path/to/nfs/mounted/directory/
 
   rubygems (per node):
 
     gem install rq
+
+TEST
+
+  source tree:
+
+    cd ./test
+    ./test_rq.rb
 
 AUTHOR
   #{ AUTHOR }
