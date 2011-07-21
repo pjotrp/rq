@@ -119,7 +119,7 @@ INSTALL
 
   gems (per node):
 
-    gem >=3.4.2:
+    gem >=3.4.3:
 
       - install sqlite2 (Debian apt-get install libsqlite0-dev)
       - wget http://rubyforge.org/frs/download.php/1070/sqlite-1.3.1.gem

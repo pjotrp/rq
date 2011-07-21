@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rq-ruby1.8}
-  s.version = "3.4.2"
+  s.version = "3.4.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pjotr Prins"]
@@ -79,7 +79,6 @@ Gem::Specification.new do |s|
     "lib/rq/util.rb",
     "rdoc.sh",
     "rq-ruby1.8.gemspec",
-    "rq.gemspec",
     "test/.gitignore",
     "test/test_rq.rb",
     "white_box/crontab",
