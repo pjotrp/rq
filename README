@@ -1,5 +1,5 @@
 NAME
-  rq v3.1.0
+  rq
 
 SYNOPSIS
   rq (queue | export RQ_Q=q) mode [mode_args]* [options]*
