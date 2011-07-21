@@ -1,3 +1,7 @@
+=== Rubygems
+
+The current version of rq runs on ruby1.8.
+
 === Debian
 
 On Debian systems, the recommended procedure is to use Debian apt on all 
@@ -77,3 +81,15 @@ version >4.4
   * install all packages in ./depends/packages manually
 
   * ruby install.rb
+
+=== From source (github)
+
+The current version of rq runs on ruby1.8. 
+
+gem1.8 install bundler
+Successfully installed bundler-1.0.15
+
+gem1.8 install jeweler
+Successfully installed jeweler-1.6.4
+
+
