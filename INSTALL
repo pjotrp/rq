@@ -1,7 +1,9 @@
 === Debian
 
 On Debian systems, the recommended procedure is to use Debian apt on all 
-machines
+machines. For now, use the 3.4.2 install, as documented in the README!
+
+(below will become available later)
 
   * apt-get install rq-ruby1.8
 

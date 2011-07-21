@@ -5,7 +5,8 @@ unless defined? $__rq__
 
     C = Config::CONFIG
 
-    AUTHOR = 'ara.t.howard@gmail.com'
+    AUTHOR = 'Ara Howard <ara.t.howard@gmail.com>'
+    AUTHOR2 = 'Pjotr Prins <pjotr.public01@thebird.nl>'
     LIBNAME = 'rq'
     src = File.dirname(__FILE__)
     VERSION = File.read(File.join(src,'..','VERSION')).strip 

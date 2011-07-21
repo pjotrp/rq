@@ -110,19 +110,6 @@ INSTALL
 
   See the ./INSTALL file, but quickly
 
-  manual (cluster wide):
-
-    - download latest release from http://codeforpeople.com/lib/ruby/rq/
-    - tar xvfz rq-X.X.X.tgz
-    - cd rq-X-X-X
-    - cd all
-    - ./install.sh /full/path/to/nfs/mounted/directory/
-    (note, out of date and breaks on gcc 4.4 and later)
-
-  debian flavours:
-
-    see ./INSTALL file for latest
-
   gems (per node):
 
     gem >=3.4.2:
@@ -133,7 +120,22 @@ INSTALL
       - gem1.8 install posixlock
       - gem1.8 install arrayfields
       - gem1.8 install lockfile
-      - gem1.8 install rq-ruby1.8
+      - gem1.8 install rq-ruby1.8 (or run from source)
+
+    Also available from http://bio4.dnsalias.net/download/gem/ruby1.8/
+
+  manual (cluster wide):
+
+      (note, this procedure is out of date and breaks on gcc 4.4 and later)
+      - download latest release from http://codeforpeople.com/lib/ruby/rq/
+      - tar xvfz rq-X.X.X.tgz
+      - cd rq-X-X-X
+      - cd all
+      - ./install.sh /full/path/to/nfs/mounted/directory/
+
+  Debian flavours:
+
+    see ./INSTALL file for latest
 
 DESCRIPTION
 
@@ -1181,24 +1183,24 @@ CREDITS
 
 INSTALL
 
-  rubygems (per node):
-
-    gem install rq
+    gem install rq-ruby1.8 (see top of page)
 
 TEST
 
-  source tree:
+  Install rq and
 
-    cd ./test
-    ./test_rq.rb
+    test_rq.rb
 
 AUTHOR
-  #{ AUTHOR }
+
+  #{ AUTHOR } and #{ AUTHOR2 }
 
 BUGS
- 0 < bugno && bugno <= 42
 
- reports to #{ AUTHOR }
+0 < bugno && bugno <= 42
+
+ reports on github, or to #{ AUTHOR2 } and #{ AUTHOR }
+
 usage
 #--}}}
 #--}}}
