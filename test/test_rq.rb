@@ -92,11 +92,11 @@ p status
 test_equal(__LINE__,status["jobs"]['total'],2)
 
 # Now add longer jobs
-rq_exec('submit "sleep 6"')
+rq_exec('submit "sleep 15"')  # does not finish
 sleep(1)
 status = rq_status()
 test_equal(__LINE__,status['jobs']['pending']+status['jobs']['running'],1)
-rq_exec('submit "sleep 6"')
+rq_exec('submit "sleep 15"')   # will be removed
 p rq_status()
 test_equal(__LINE__,rq_status()['jobs']['total'],4)
 
