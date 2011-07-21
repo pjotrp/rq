@@ -1,5 +1,51 @@
-=== SIMPLE
+=== Debian
 
+On Debian systems, the recommended procedure is to use Debian apt on all 
+machines
+
+  * apt-get install rq-ruby1.8
+
+which resolves all dependencies, or alternatively 
+
+  * Download the rq deb file from http://bio4.dnsalias.net/download/Debian/
+  * apt-get install libposixlock-ruby1.8 libsqlite3-ruby1.8 ruby1.8 
+  * dpkg --force-architecture -i rq-ruby1.8-ver.deb
+
+which works on on 32-bits and 64-bits systems. The commands
+
+  * rq ~/queue create
+  * rq ~/queue status
+
+should show
+
+        jobs: 
+          pending: 0
+          holding: 0
+          running: 0
+          finished: 0
+          dead: 0
+          total: 0
+        temporal: {}
+        performance: 
+          avg_time_per_job: 00h00m00.00s
+          n_jobs_in_last_hrs: 
+            1: 0
+            12: 0
+            24: 0
+        exit_status: 
+          successes: 0
+          failures: 0
+          ok: 0
+
+=== NFS central
+
+The second option is to build and install once and distribute through
+NFS. Use the tgz installation, which includes an ./all/ directory. On 
+modern systems your mileage may vary as the Ruby build breaks on gcc 
+version >4.4
+
+  * Unpack rq-ver.tgz file
+  
   * cd into ./all/
 
   * ./install.sh /full/path/to/a/nfs/mounted/directory/
@@ -12,15 +58,19 @@
 
     (note 'bin') to use rq
 
-  * this is the __reccomended__ procedure since it will result in a single nfs
-    install which all cluster nodes can use.  the other install methods mean
+  * this is the second best procedure since it will result in a single nfs
+    install which all cluster nodes can use. The other install methods mean
     you will have to install rq on __each__ node you plan to use it on.
 
 === RUBYGEMS
 
+(currently defunct, awaits updating rq to Ruby 1.9.x and sqlite3)
+
   * gem install rq
 
 === STANDARD
+
+(in rq version <=3.4.0)
 
   * install all packages in ./depends/packages manually
 

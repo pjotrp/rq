@@ -93,12 +93,12 @@ unless defined? $__rq_qdb__
           begin
             db = 
               begin
-                SQLite::Database::new dbpath, 0
+                SQLite3::Database::new dbpath, 0
               rescue
-                SQLite::Database::new dbpath
+                SQLite3::Database::new dbpath
               end
             opened = true
-            db.use_array = true rescue nil
+            # db.use_array = true rescue nil
             tuple = db.execute 'PRAGMA integrity_check;'
             ret = (tuple and tuple.first and (tuple.first["integrity_check"] =~ /^\s*ok\s*$/io))
           ensure
@@ -536,13 +536,13 @@ end
           debug{"connecting to db <#{ @path }>..."}
           $db = @db = 
             begin
-              SQLite::Database::new(@path, 0)
+              SQLite3::Database::new(@path, 0)
             rescue
-              SQLite::Database::new(@path)
+              SQLite3::Database::new(@path)
             end
           debug{"connected."}
           opened = true
-          @db.use_array = true rescue nil
+          # @db.use_array = true rescue nil
           ret = yield @db
         ensure
           @db.close if opened
@@ -574,7 +574,7 @@ end
         ret = nil
         begin
           ret = yield 
-        rescue SQLite::BusyException
+        rescue SQLite3::BusyException
           warn{ "database locked - waiting(1.0) and retrying" }
           sleep 1.0 
           retry

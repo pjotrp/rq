@@ -1,6 +1,10 @@
 ---
 
-- confine/constrain mechansim
+- migrate to Ruby1.9 (problem is the posixlock module, depending on ruby1.8)
+- write some rspec cases
+- create gem in rubygems (for ruby1.9)
+
+- confine/constrain mechanism
 - heartbeat to slave
 - ls show elapsed time
 - rq q 1234 234 bug???
