@@ -78,6 +78,7 @@ Gem::Specification.new do |s|
     "lib/rq/usage.rb",
     "lib/rq/util.rb",
     "rdoc.sh",
+    "rq-ruby1.8.gemspec",
     "rq.gemspec",
     "test/.gitignore",
     "test/test_rq.rb",
