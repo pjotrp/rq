@@ -1,10 +1,10 @@
 NAME
 
-rq v3.4.2
+  rq v3.4.2
 
 SYNOPSIS
 
-rq (queue | export RQ_Q=q) mode [mode_args]* [options]*
+  rq (queue | export RQ_Q=q) mode [mode_args]* [options]*
 
 
 URIS

@@ -85,11 +85,11 @@ unless defined? $__rq_usage__
 <<-usage_banner
 NAME
 
-rq v#{ VERSION }
+  rq v#{ VERSION }
 
 SYNOPSIS
 
-rq (queue | export RQ_Q=q) mode [mode_args]* [options]*
+  rq (queue | export RQ_Q=q) mode [mode_args]* [options]*
 
 usage_banner
 #--}}}
