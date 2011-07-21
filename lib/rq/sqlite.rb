@@ -1,20 +1,26 @@
 # --------------------------------------------------------------------------
 # sqlite.rb -- ruby interface for enhancing the core SQLite routines
-# Copyright (C) 2003,2004 Jamis Buck (jamis@jamisbuck.org)
+# Copyright (C) 2003 Jamis Buck (jgb3@email.byu.edu)
 # --------------------------------------------------------------------------
 # This file is part of the SQLite ruby interface.
 # 
 # The SQLite/Ruby Interface is free software; you can redistribute it and/or
-# modify  it  under the terms of the BSD License as published by  the  Free
-# Software  Foundation. See also the rq LICENSE file.
+# modify  it  under the terms of the GNU General Public License as published
+# by  the  Free  Software  Foundation;  either  version 2 of the License, or
+# (at your option) any later version.
 # 
 # The SQLite/Ruby Interface is distributed in the hope that it will be useful,
 # but   WITHOUT   ANY   WARRANTY;  without  even  the  implied  warranty  of
-# MERCHANTABILITY  or  FITNESS  FOR  A  PARTICULAR  PURPOSE.  
+# MERCHANTABILITY  or  FITNESS  FOR  A  PARTICULAR  PURPOSE.   See  the  GNU
+# General Public License for more details.
+# 
+# You  should  have  received  a  copy  of  the  GNU  General Public License
+# along with the SQLite/Ruby Interface;  if  not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 # --------------------------------------------------------------------------
 # This defines further enhancements to the SQLite::Database class.
 #
-# Author: Jamis Buck (jamis@jamisbuck.org)
+# Author: Jamis Buck (jgb3@email.byu.edu)
 # Date: June 2003
 # --------------------------------------------------------------------------
 
@@ -24,7 +30,7 @@ require 'base64'
 
 # The SQLite module defines the classes and objects needed to interface with a
 # SQLite database.
-module SQLite3
+module SQLite
 
   # The Database class represents a single SQLite database.
   class Database
@@ -71,7 +77,7 @@ module SQLite3
       result = nil
       execute( sql ) do |row|
         result = row
-        SQLite3::ABORT
+        SQLite::ABORT
       end
       result
     end
@@ -82,7 +88,7 @@ module SQLite3
       result = nil
       execute( sql ) do |row|
         result = row[0]
-        SQLite3::ABORT
+        SQLite::ABORT
       end
       result
     end
