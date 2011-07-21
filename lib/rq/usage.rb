@@ -98,9 +98,37 @@ usage_banner
 #{ USAGE_BANNER }
 URIS
 
-  http://rubyforge.org/projects/codeforpeople/
-  http://codeforpeople.com/lib/ruby/rq/
-  http://www.linuxjournal.com/article/7922
+    https://github.com/pjotrp/rq 
+    http://www.linuxjournal.com/article/7922
+
+  and
+  
+    http://rubyforge.org/projects/codeforpeople/
+    http://codeforpeople.com/lib/ruby/rq/
+
+INSTALL
+
+  See the ./INSTALL file, but quickly
+
+  manual (cluster wide):
+
+    - download latest release from http://codeforpeople.com/lib/ruby/rq/
+    - tar xvfz rq-X.X.X.tgz
+    - cd rq-X-X-X
+    - cd all
+    - ./install.sh /full/path/to/nfs/mounted/directory/
+    (note, breaks on gcc 4.4 and later)
+
+  debian flavours:
+
+    see ./INSTALL file for latest
+
+  gems (per node):
+
+    - install sqlite
+    - gem1.8 install sqlite-ruby
+    - gem1.8 install rq # Ruby 1.8 only
+    (note, may be broken because it needs old sqlite.h)
 
 DESCRIPTION
 
@@ -125,11 +153,13 @@ DESCRIPTION
   failures.
 
   although the rq system is simple in it's design it features powerful
-  functionality such as priority management, predicate and sql query , compact
+  functionality such as priority management, predicate and sql query, compact
   streaming command-line processing, programmable api, hot-backup, and
-  input/capture of the stdin/stdout/stderr io streams of remote jobs.  to date
-  rq has had no reported runtime failures and is in operation at dozens of
-  research centers around the world.
+  input/capture of the stdin/stdout/stderr io streams of remote jobs. to date
+  rq has had no reported runtime failures and is in operation at
+  dozens of research centers around the world. while rq is written in
+  the Ruby programming language, there is no Ruby programming
+  involved in using rq.
 
 INVOCATION
 

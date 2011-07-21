@@ -1,5 +1,5 @@
 NAME
-  rq v3.4.x
+  rq v3.4.1
 
 SYNOPSIS
   rq (queue | export RQ_Q=q) mode [mode_args]* [options]*
@@ -9,8 +9,8 @@ URIS
     https://github.com/pjotrp/rq 
     http://www.linuxjournal.com/article/7922
 
-  or
-
+  and
+  
     http://rubyforge.org/projects/codeforpeople/
     http://codeforpeople.com/lib/ruby/rq/
 
@@ -61,12 +61,12 @@ DESCRIPTION
   failures.
 
   although the rq system is simple in it's design it features powerful
-  functionality such as priority management, predicate and sql query , compact
+  functionality such as priority management, predicate and sql query, compact
   streaming command-line processing, programmable api, hot-backup, and
-  input/capture of the stdin/stdout/stderr io streams of remote jobs.  to date
+  input/capture of the stdin/stdout/stderr io streams of remote jobs. to date
   rq has had no reported runtime failures and is in operation at
-  dozens of research centers around the world. While rq is written in
-  the beatiful Ruby programming language, there is no Ruby programming
+  dozens of research centers around the world. while rq is written in
+  the Ruby programming language, there is no Ruby programming
   involved in using rq.
 
 INVOCATION
@@ -1078,6 +1078,19 @@ CREDITS
   - _why            : for writing yaml for ruby
   - matz            : for writing ruby
 
+INSTALL
+  manual (cluster wide):
+
+    - download latest release from URI(S) above
+    - tar xvfz rq-X.X.X.tgz
+    - cd rq-X-X-X.tgz
+    - cd all
+    - ./install.sh /full/path/to/nfs/mounted/directory/
+
+  rubygems (per node):
+
+    gem install rq
+
 AUTHOR
   ara.t.howard@gmail.com
 
@@ -1104,6 +1117,8 @@ OPTIONS
         modes <submit, resubmit> : infile 
   --stdin=[stdin], -s 
         modes <submit, resubmit, update> : stdin 
+  --data=data, -d 
+        modes <submit, resubmit, update> : data 
   --quiet, -q 
         modes <submit, resubmit, feed> : do not echo submitted jobs, fail 
         silently if another process is already feeding 
@@ -1117,6 +1132,8 @@ OPTIONS
         modes <feed> : specify min sleep 
   --max_sleep=max_sleep 
         modes <feed> : specify max sleep 
+  --loops=loops, -L 
+        modes <feed> : specify how many times to loop (default forever) 
   --exit=exit_code_map 
         modes <status> : specify and exit code map 
   --fields=fields, -f 
@@ -1126,7 +1143,7 @@ OPTIONS
   --editor=editor, -e 
         editor command capable of opening multiple files at once = (default 
         ENV["RQ_EDITOR"] || "vim -R -o") 
-  --verbosity=verbostiy, -v 
+  --verbosity=[verbostiy], -v 
         0|fatal < 1|error < 2|warn < 3|info < 4|debug - (default info) 
   --log=path, -l 
         set log file - (default stderr) 
