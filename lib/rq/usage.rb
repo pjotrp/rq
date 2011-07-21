@@ -98,7 +98,7 @@ usage_banner
 #{ USAGE_BANNER }
 URIS
 
-    https://github.com/pjotrp/rq 
+    #{ WEBSITE } - main website
     http://www.linuxjournal.com/article/7922
 
   and
@@ -1200,6 +1200,10 @@ BUGS
 0 < bugno && bugno <= 42
 
  reports on github, or to #{ AUTHOR2 } and #{ AUTHOR }
+
+SEE ALSO
+
+    #{ WEBSITE } - main website
 
 usage
 #--}}}

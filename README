@@ -6,7 +6,7 @@ SYNOPSIS
 
 URIS
 
-    https://github.com/pjotrp/rq 
+    https://github.com/pjotrp/rq - main website
     http://www.linuxjournal.com/article/7922
 
   and
@@ -1108,6 +1108,10 @@ BUGS
 0 < bugno && bugno <= 42
 
  reports on github, or to Pjotr Prins <pjotr.public01@thebird.nl> and Ara Howard <ara.t.howard@gmail.com>
+
+SEE ALSO
+
+    https://github.com/pjotrp/rq - main website
 
 
 OPTIONS

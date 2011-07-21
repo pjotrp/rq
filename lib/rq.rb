@@ -7,6 +7,7 @@ unless defined? $__rq__
 
     AUTHOR = 'Ara Howard <ara.t.howard@gmail.com>'
     AUTHOR2 = 'Pjotr Prins <pjotr.public01@thebird.nl>'
+    WEBSITE = 'https://github.com/pjotrp/rq'
     LIBNAME = 'rq'
     src = File.dirname(__FILE__)
     VERSION = File.read(File.join(src,'..','VERSION')).strip 
