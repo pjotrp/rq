@@ -111,7 +111,7 @@ URIS
 
 LICENSE
 
-   rq is distributed under the BSD license, see the LICENSE file
+   rq is distributed under the BSD license, see the ./LICENSE file
 
 INSTALL
 

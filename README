@@ -17,6 +17,10 @@ URIS
     http://rubyforge.org/projects/codeforpeople/
     http://codeforpeople.com/lib/ruby/rq/
 
+LICENSE
+
+   rq is distributed under the BSD license, see the ./LICENSE file
+
 INSTALL
 
   See the ./INSTALL file, but quickly
