@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby1.8
 
+$: << '/var/lib/gems/1.8/gems/rq-ruby1.8-3.4.2/lib'  # locate gem1.8 install
 $: << '/usr/share/rq-ruby1.8/lib'
+
 # 
 # === the rq program
 # 
