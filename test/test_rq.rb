@@ -16,7 +16,7 @@ $queue = './test_queue'
 
 def rq_exec(args)
   cmd = $rq + ' ' + $queue + ' ' + args
-  print cmd
+  print "====> ",cmd," <===="
   system(cmd)
 end
 
@@ -28,7 +28,6 @@ end
 def error(line, msg)
   p rq_status()
   rq_exec('shutdown')
-  print `rm -rf #{$queue}`
   $stderr.print(__FILE__," ",line,": ",msg)
   exit 1
 end
@@ -40,8 +39,27 @@ end
 def kill_rq()
   pstab = `ps xau|grep rq`
   pstab.grep(/#{$rq}/) do | s |
-    error(__LINE__,"Still running "+s)
+    # rq_exec('shutdown')
+    s =~ /\S+\s+(\d+)/
+    pid = $1
+    print "+++#{pid}+++\n"
+    system("kill -9 #{pid}")
+    sleep(1)
   end
+  print `rm -rf #{$queue}`
+  pstab = `ps xau|grep rq`
+  pstab.grep(/#{$rq}/) do | s |
+    error(__LINE__,"Sorry, still running:\n"+s)
+  end
+  pstab = `ps xau|grep rq`
+  pstab.grep(/rq_jobrunnerdaemon/) do | s |
+    s =~ /\S+\s+(\d+)/
+    pid = $1
+    print "+++#{pid}+++\n"
+    system("kill -9 #{pid}")
+    sleep(1)
+  end
+  pstab = `ps xau|grep rq`
   pstab.grep(/rq_jobrunnerdaemon/) do | s |
     error(__LINE__,"Still running "+s)
   end
@@ -111,10 +129,8 @@ p rq_status
 rq_exec('shutdown')
 status = rq_status()
 test_equal(__LINE__,status['jobs']['pending']+status['jobs']['running'],1)
-sleep(2)
-kill_rq()
-
-print `rm -rf #{$queue}`
+sleep(1)
+p rq_status
 
 # Done!
 print <<MSG
