@@ -91,7 +91,7 @@ static ID    idFields;
 static ID    idFieldsEqual;
 
 static struct {
-  char *name;
+  const char *name;
   VALUE object;
 } g_sqlite_exceptions[] = {
   { "OK", 0 },
@@ -144,7 +144,7 @@ static int static_pragma_enabled( sqlite* db, const char *pragma );
 static void static_configure_exception_classes();
 
 /* raise an exception */
-static void static_raise_db_error( int code, char *msg, ... );
+static void static_raise_db_error( int code, const char *msg, ... );
 
 
 static VALUE static_database_new( VALUE klass,
@@ -321,7 +321,7 @@ static void static_custom_function_callback( sqlite_func* ctx, int argc, const c
   switch( TYPE(rc) )
   {
     case T_STRING:
-      sqlite_set_result_string( ctx, STR2CSTR(rc), RSTRING(rc)->len );
+      sqlite_set_result_string( ctx, (const char *)STR2CSTR(rc), RSTRING_LEN(rc) );
       break;
     case T_FIXNUM:
       sqlite_set_result_int( ctx, FIX2INT(rc) );
@@ -372,7 +372,7 @@ static void static_custom_finalize_callback( sqlite_func* ctx )
   switch( TYPE(rc) )
   {
     case T_STRING:
-      sqlite_set_result_string( ctx, STR2CSTR(rc), RSTRING(rc)->len );
+      sqlite_set_result_string( ctx, (const char *)STR2CSTR(rc), RSTRING_LEN(rc) );
       break;
     case T_FIXNUM:
       sqlite_set_result_int( ctx, FIX2INT(rc) );
@@ -433,7 +433,7 @@ static VALUE static_database_new( VALUE klass,
 {
   SQLITE_RUBY_DATA *hdb;
   sqlite *db;
-  char   *s_dbname;
+  const char   *s_dbname;
   int     i_mode;
   char   *errmsg;
   VALUE   v_db;
@@ -441,7 +441,7 @@ static VALUE static_database_new( VALUE klass,
   Check_Type( dbname, T_STRING );
   Check_Type( mode,   T_FIXNUM );
 
-  s_dbname = STR2CSTR(dbname);
+  s_dbname = (const char *)STR2CSTR(dbname);
   i_mode   = FIX2INT(mode);
 
   db = sqlite_open( s_dbname, i_mode, &errmsg );
@@ -450,7 +450,7 @@ static VALUE static_database_new( VALUE klass,
     VALUE err = rb_str_new2( errmsg );
     free( errmsg );
 
-    static_raise_db_error( -1, "%s", STR2CSTR( err ) );
+    static_raise_db_error( -1, "%s", (const char *)STR2CSTR( err ) );
   }
 
   hdb = ALLOC( SQLITE_RUBY_DATA );
@@ -498,13 +498,13 @@ static VALUE static_database_exec( VALUE self,
 {
   SQLITE_RUBY_DATA *hdb;
   SQLITE_RUBY_CALLBACK hook;
-  char *s_sql;
+  const char *s_sql;
   int i;
   char *err = NULL;
   VALUE v_err;
 
   Check_Type( sql, T_STRING );
-  s_sql = STR2CSTR(sql);
+  s_sql = (const char *)STR2CSTR(sql);
 
   Data_Get_Struct( self, SQLITE_RUBY_DATA, hdb );
   if( hdb->db == NULL )
@@ -545,7 +545,7 @@ static VALUE static_database_exec( VALUE self,
     case SQLITE_ABORT:
       break;
     default:
-      static_raise_db_error( i, "%s", STR2CSTR(v_err) );
+      static_raise_db_error( i, "%s", (const char *)STR2CSTR(v_err) );
   }
 
   return INT2FIX(0);
@@ -613,7 +613,7 @@ static VALUE static_complete( VALUE self,
 {
   Check_Type( sql, T_STRING );
 
-  return ( sqlite_complete( STR2CSTR( sql ) ) ? Qtrue : Qfalse );
+  return ( sqlite_complete( (const char *)STR2CSTR( sql ) ) ? Qtrue : Qfalse );
 }
 
 /**
@@ -661,7 +661,7 @@ static VALUE static_create_function( VALUE self,
   int   rc;
 
   Data_Get_Struct( self, SQLITE_RUBY_DATA, hdb );
-  s_name = STR2CSTR( name );
+  s_name = (const char *)STR2CSTR( name );
   i_argc = FIX2INT( argc );
 
   if( hdb->db == NULL )
@@ -700,12 +700,12 @@ static VALUE static_create_aggregate( VALUE self,
 {
   SQLITE_RUBY_DATA *hdb;
   SQLITE_CUSTOM_FUNCTION_CB *data;
-  char *s_name;
+  const char *s_name;
   int   i_argc;
   int   rc;
 
   Data_Get_Struct( self, SQLITE_RUBY_DATA, hdb );
-  s_name = STR2CSTR( name );
+  s_name = (const char *)STR2CSTR( name );
   i_argc = FIX2INT( argc );
 
   if( hdb->db == NULL )
@@ -796,7 +796,7 @@ static void static_configure_exception_classes()
   }
 }
 
-static void static_raise_db_error( int code, char *msg, ... )
+static void static_raise_db_error( int code, const char *msg, ... )
 {
   va_list args;
   char message[ 2048 ];

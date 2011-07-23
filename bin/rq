@@ -32,6 +32,12 @@
 
   begin
     require 'rq'
+    if ARGV.size == 0
+      print __FILE__," ",RQ::VERSION,' on ruby ',RUBY_VERSION,"\n\n"
+      print "  try --help for more info\n" 
+      exit 0
+    end
+
   rescue LoadError
     # a guess really...
     libdir = File.join(File.dirname(File.dirname(__FILE__)), 'lib')

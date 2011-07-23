@@ -10,7 +10,8 @@ unless defined? $__rq__
     WEBSITE = 'https://github.com/pjotrp/rq'
     LIBNAME = 'rq'
     src = File.dirname(__FILE__)
-    VERSION = File.read(File.join(src,'..','VERSION')).strip 
+    VERSION = File.read(File.join(src,'..','VERSION')).strip
+    print VERSION+' '+$VERSION
     LIBVER = "#{ LIBNAME }-#{ VERSION }"
     DIRNAME = File::dirname(File::expand_path(__FILE__)) + File::SEPARATOR
     ROOTDIR = File::dirname(DIRNAME)

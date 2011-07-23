@@ -39,7 +39,7 @@ end
 
 def kill_rq()
   pstab = `ps xau|grep rq`
-  pstab.grep(/#{$rq}/) do | s |
+  pstab.split(/\n/).grep(/#{$rq}/) do | s |
     # rq_exec('shutdown')
     s =~ /\S+\s+(\d+)/
     pid = $1
@@ -49,11 +49,11 @@ def kill_rq()
   end
   print `rm -rf #{$queue}`
   pstab = `ps xau|grep rq`
-  pstab.grep(/#{$rq}/) do | s |
+  pstab.split(/\n/).grep(/#{$rq}/) do | s |
     error(__LINE__,"Sorry, still running:\n"+s)
   end
   pstab = `ps xau|grep rq`
-  pstab.grep(/rq_jobrunnerdaemon/) do | s |
+  pstab.split(/\n/).grep(/rq_jobrunnerdaemon/) do | s |
     s =~ /\S+\s+(\d+)/
     pid = $1
     print "+++#{pid}+++\n"
@@ -61,7 +61,7 @@ def kill_rq()
     sleep(1)
   end
   pstab = `ps xau|grep rq`
-  pstab.grep(/rq_jobrunnerdaemon/) do | s |
+  pstab.split(/\n/).grep(/rq_jobrunnerdaemon/) do | s |
     error(__LINE__,"Still running "+s)
   end
 end
