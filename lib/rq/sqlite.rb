@@ -8,6 +8,8 @@
 # modify  it  under the terms of the BSD License as published by  the  Free
 # Software  Foundation. See also the rq LICENSE file.
 #
+# The license was changed for older sqlite-1.3.1 in agreement with Jamis Buck.
+#
 # The SQLite/Ruby Interface is distributed in the hope that it will be useful,
 # but   WITHOUT   ANY   WARRANTY;  without  even  the  implied  warranty  of
 # MERCHANTABILITY  or  FITNESS  FOR  A  PARTICULAR  PURPOSE.
@@ -16,6 +18,9 @@
 #
 # Author: Jamis Buck (jamis@jamisbuck.org)
 # --------------------------------------------------------------------------
+#
+# NOTE: rq still users the older sqlite2 engine and bindings. This will 
+# change.
 
 require '_sqlite'
 require 'time'
