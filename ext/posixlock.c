@@ -2,9 +2,10 @@
 #include "missing/file.h"
 #endif
 
-#include "ruby.h"
-#include "rubyio.h"
-#include "rubysig.h"
+#include <stdio.h>
+#include <ruby.h>
+#include <ruby/io.h>
+#include <ruby/backward/rubysig.h>
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
@@ -108,19 +109,19 @@ rb_file_posixlock (obj, operation)
      VALUE operation;
 {
 #ifndef __CHECKER__
-  OpenFile *fptr;
+  rb_io_t *fptr;
   int ret;
 
   rb_secure (2);
-  GetOpenFile (obj, fptr);
+  Getrb_io_t (obj, fptr);
 
   if (fptr->mode & FMODE_WRITABLE)
     {
-      fflush (GetWriteFile (fptr));
+      fflush ((FILE *)GetWriteFile (fptr));
     }
 retry:
   TRAP_BEG;
-  ret = posixlock (fileno (fptr->f), NUM2INT (operation));
+  ret = posixlock (fileno (fptr->stdio_file), NUM2INT (operation));
   TRAP_END;
   if (ret < 0)
     {
@@ -138,7 +139,7 @@ retry:
 #endif
 	  goto retry;
 	}
-      rb_sys_fail (fptr->path);
+      rb_sys_fail ((const char *)(STR2CSTR(fptr->pathv)));
     }
 #endif
 
@@ -153,7 +154,7 @@ rb_file_lockf (obj, cmd, len)
      VALUE len;
 {
 #ifndef __CHECKER__
-  OpenFile *fptr;
+  rb_io_t *fptr;
   int ret;
   int pid;
   int f_test;
@@ -162,13 +163,13 @@ rb_file_lockf (obj, cmd, len)
 
 
   rb_secure (2);
-  GetOpenFile (obj, fptr);
+  Getrb_io_t (obj, fptr);
 
-  snprintf (msg, 1024, "path <%s>", fptr->path);
+  snprintf (msg, 1024, "path <%s>", (const char *)(STR2CSTR(fptr->pathv)));
 
   if (fptr->mode & FMODE_WRITABLE)
     {
-      fflush (GetWriteFile (fptr));
+      fflush ((FILE *)GetWriteFile (fptr));
     }
 retry:
   TRAP_BEG;
@@ -181,19 +182,19 @@ retry:
     {
     case F_LOCK:
       lock.l_type = F_WRLCK;
-      ret = fcntl (fileno (fptr->f), F_SETLKW, &lock);
+      ret = fcntl (fileno (fptr->stdio_file), F_SETLKW, &lock);
       break;
     case F_LOCKR:
       lock.l_type = F_RDLCK;
-      ret = fcntl (fileno (fptr->f), F_SETLKW, &lock);
+      ret = fcntl (fileno (fptr->stdio_file), F_SETLKW, &lock);
       break;
     case F_TLOCK:
       lock.l_type = F_WRLCK;
-      ret = fcntl (fileno (fptr->f), F_SETLK, &lock);
+      ret = fcntl (fileno (fptr->stdio_file, F_SETLK, &lock);
       break;
     case F_TLOCKR:
       lock.l_type = F_RDLCK;
-      ret = fcntl (fileno (fptr->f), F_SETLK, &lock);
+      ret = fcntl (fileno (fptr->stdio_file), F_SETLK, &lock);
       break;
     case F_ULOCK:
       lock.l_type = F_UNLCK;
