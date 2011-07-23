@@ -5,14 +5,15 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rq-ruby1.8}
-  s.version = "3.4.3"
+  s.version = "3.4.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pjotr Prins"]
-  s.date = %q{2011-07-21}
+  s.date = %q{2011-07-23}
   s.description = %q{Zero configuration job scheduler for computer clusters}
   s.email = %q{pjotr.public01@thebird.nl}
   s.executables = ["rqmailer", "rq"]
+  s.extensions = ["ext/extconf.rb"]
   s.extra_rdoc_files = [
     "LICENSE",
     "README",
@@ -32,6 +33,8 @@ Gem::Specification.new do |s|
     "bin/rq",
     "bin/rqmailer",
     "example/a.rb",
+    "ext/extconf.rb",
+    "ext/sqlite.c",
     "extconf.rb",
     "gemspec.rb",
     "install.rb",
