@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.date = %q{2011-07-23}
   s.description = %q{Zero configuration job scheduler for computer clusters}
   s.email = %q{pjotr.public01@thebird.nl}
-  s.executables = ["rqmailer", "rq"]
+  s.executables = ["rq", "rqmailer"]
   s.extensions = ["ext/extconf.rb"]
   s.extra_rdoc_files = [
     "LICENSE",
@@ -91,6 +91,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/pjotrp/rq}
   s.licenses = ["BSD"]
   s.require_paths = ["lib"]
+  s.rubyforge_project = %q{nowarning}
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Ruby Queue scheduler}
 

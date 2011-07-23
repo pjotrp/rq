@@ -11,11 +11,9 @@ unless defined? $__rq__
     LIBNAME = 'rq'
     src = File.dirname(__FILE__)
     VERSION = File.read(File.join(src,'..','VERSION')).strip
-    print VERSION+' '+$VERSION
     LIBVER = "#{ LIBNAME }-#{ VERSION }"
     DIRNAME = File::dirname(File::expand_path(__FILE__)) + File::SEPARATOR
     ROOTDIR = File::dirname(DIRNAME)
-    #LIBDIR = File::join(DIRNAME, LIBVER) + File::SEPARATOR
     LIBDIR = File::join(DIRNAME, LIBNAME) + File::SEPARATOR
     LOCALDIR = File::join(LIBDIR, 'local') + File::SEPARATOR
     LOCALBINDIR = File::join(LOCALDIR, 'bin') + File::SEPARATOR
@@ -96,14 +94,16 @@ unless defined? $__rq__
       $:.unshift ARCHLIBDIR 
       $:.unshift LIBDIR
       # $:.unshift '/var/lib/gems/1.8/gems/sqlite-1.3.1/lib'
-
+      extdir = File.join(ROOTDIR,'ext')
+      $:.unshift extdir
+      # p $:
       require 'rq/sqlite'
       # p $:
       # require 'sqlite/version'
       # print("SQLite.version=",SQLite::Version::STRING,"\n")
 
     rescue LoadError
-      p $:
+      # p $:
       abort "require sqlite in load path - http://raa.ruby-lang.org/project/sqlite-ruby/"
     ensure
       $:.shift

@@ -70,7 +70,7 @@ end
 # Check dependencies
 print "Running tests...\n"
 
-require 'rq/sqlite'
+# require 'rq/sqlite'
 
 kill_rq()
 
