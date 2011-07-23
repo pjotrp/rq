@@ -94,9 +94,9 @@ unless defined? $__rq__
     begin
       $:.unshift ARCHLIBDIR 
       $:.unshift LIBDIR
-      $:.unshift '/var/lib/gems/1.8/gems/sqlite-1.3.1/lib'
+      # $:.unshift '/var/lib/gems/1.8/gems/sqlite-1.3.1/lib'
 
-      require 'sqlite'
+      require 'rq/sqlite'
       # p $:
       # require 'sqlite/version'
       # print("SQLite.version=",SQLite::Version::STRING,"\n")

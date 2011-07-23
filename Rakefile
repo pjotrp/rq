@@ -12,7 +12,7 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "rq-ruby1.8"
+  gem.name = "rq"
   gem.homepage = "http://github.com/pjotrp/rq"
   gem.license = "BSD"
   gem.summary = %Q{Ruby Queue scheduler}

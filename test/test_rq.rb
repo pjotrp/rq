@@ -69,13 +69,7 @@ end
 # Check dependencies
 print "Running tests...\n"
 
-# $:.unshift '/var/lib/gems/1.8/gems/sqlite-ruby-2.2.3/lib/'
-# test_equal(__LINE__,SQLite::Version::STRING,"2.2.3")
-
-gempath = '/var/lib/gems/1.8/gems/sqlite-1.3.1/lib'
-error("Expect "+gempath) if !File.directory?(gempath)
-$:.unshift gempath
-require 'sqlite'
+require 'rq/sqlite'
 
 kill_rq()
 
