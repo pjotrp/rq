@@ -31,56 +31,7 @@ and one node are up - the cluster can continute processing jobs.
 === EXAMPLE INSTALL
 ---
 
-download rq from http://raa.ruby-lang.org/project/rq
-
-unpack rq-X.X.X.tgz
-
-cd ./depends/
-
-the ./depends/packages/ directory will contain ALL packages required to install
-rq including ruby[www.ruby-lang.org]
-
-the file ./depends/install.sh installs ALL required packages for ruby queue into
-an nfs mounted directory.  it is a simple script - feel free to read/edit.
-
-installed packages will include:
-
-* ruby
-* sqlite
-* sqlite-ruby
-* arrayfields
-* posixlock
-* lockfile
-* rq
-
-the install.sh procedure is reccomended since
-
-* a common nfs filesystem is required on which to store the queue anyhow
-
-* installing all packages into this common nfs filesystem means no
-  software will be installed locally on any node which simplifies maintainance
-  and the addition of new nodes to the cluster.
-
-* root privledges are not required for this technique
-
-* this technique implies only two requirements for any node to join the cluster
-  * the nfs filesystem is visible to it
-  * a single crontab entry has been added
-
-the user running ./depends/install.sh should have write permission (or sudo
-write permission) to the /nfs mounted directory.
-
-following are the steps for an install into the nfs mounted directory named
-'/nfs'.  absolutely NO packages or files will be installed outside this hierachy
-so simply use 'rm -rf' to un-install.  
-  
-  tar xvfz rq-X.X.X.tgz
-
-  cd rq-X.X.X/
-
-  cd depends/
-
-  ./install.sh /nfs  
+See README and INSTALL
 
 ---
 === EXAMPLE SETUP
@@ -226,5 +177,4 @@ for more info try
 === AUTHOR/ASSISTANCE/BUG REPORTS
 ---
 
-  ara.t.howard@noaa.gov
-
+See README
