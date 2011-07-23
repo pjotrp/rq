@@ -191,7 +191,7 @@ INSTALL
 
   See the ./INSTALL file, but quickly
 
-  gem >=3.4.4:
+  gem >=#{VERSION}:
 
     - install sqlite2 (Debian apt-get install libsqlite0-dev)
     - gem1.8 install rq-ruby1.8 
