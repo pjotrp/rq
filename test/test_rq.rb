@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#! /usr/bin/ruby1.9.1
 #
 # Test frame work for rq - tests submitting jobs to a queue,
 # and the handling of them. Does not test NFS (yet).
@@ -10,6 +10,7 @@ require 'yaml'
 print "rq integration test suite by Pjotr Prins 2011\n"
 
 src = File.join('..',File.dirname(__FILE__))
+$: << File.join(src,'lib')
 $rq = File.join(src,'bin','rq');
 raise "Run from test folder!" if !File.executable?($rq)
 $queue = './test_queue'

@@ -141,7 +141,7 @@ module SQLite
       enums.each do |enum|
         cases << "when \"" <<
                  enum.map { |i| i.to_s.downcase }.join( '", "' ) <<
-                 "\": mode = \"" <<
+                 "\" then mode = \"" <<
                  enum.first.upcase << "\"\n"
       end
 
@@ -179,16 +179,18 @@ module SQLite
     # something that SQLite can understand.
     def fix_pragma_parm( parm )
       case parm
-        when String
+        when String then
           case parm.downcase
-            when "on", "yes", "true", "y", "t": return "'ON'"
-            when "off", "no", "false", "n", "f": return "'OFF'"
+            when "on", "yes", "true", "y", "t" then 
+              return "'ON'"
+            when "off", "no", "false", "n", "f" then 
+              return "'OFF'"
             else
               raise DatabaseException, "unrecognized pragma parameter '#{parm}'"
           end
-        when true, 1
+        when true, 1 then
           return "ON"
-        when false, 0, nil
+        when false, 0, nil then
           return "OFF"
         else
           raise DatabaseException, "unrecognized pragma parameter '#{parm.inspect}'"
