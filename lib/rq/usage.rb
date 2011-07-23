@@ -136,6 +136,12 @@ DESCRIPTION
 
 QUICK START
 
+  install rq using rubygems
+
+    gem1.8 install rq-ruby1.8
+    ln -sf `gem1.8 contents rq-ruby1.8|grep bin/rq$` /usr/local/bin/rq
+    rq --help
+
   set up a directory for the queue - this can be a local, or an NFS/sshfs
   mounted drive:
 
@@ -145,7 +151,7 @@ QUICK START
 
     rq dir feed --daemon --log=rq.log --max_feed=8
 
-  submit two jobs - shell type
+  submit two jobs - shell style
    
     rq dir submit 'sleep 10'
     rq dir submit 'sleep 9'
