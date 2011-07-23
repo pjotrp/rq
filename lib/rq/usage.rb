@@ -89,7 +89,13 @@ NAME
 
 SYNOPSIS
 
-  rq (queue | export RQ_Q=q) mode [mode_args]* [options]*
+  rq queue mode [mode_args]* [options]*
+
+  ruby queue (rq) is a zero-admin zero-configuration tool used to create
+  instant unix clusters on a multi-core machine, and/or multiple nodes in a
+  network, or in the Cloud. rq requires only a centrally mounted directory
+  (e.g. NFS) in order to manage a simple sqlite database as a distributed
+  priority work queue. See QUICK START below.
 
 usage_banner
 #--}}}
@@ -99,62 +105,15 @@ usage_banner
 #--{{{
 <<-usage
 #{ USAGE_BANNER }
-URIS
-
-    #{ WEBSITE } - main website
-    http://www.linuxjournal.com/article/7922
-
-  and
-  
-    http://rubyforge.org/projects/codeforpeople/
-    http://codeforpeople.com/lib/ruby/rq/
-
-LICENSE
-
-   rq is distributed under the BSD license, see the ./LICENSE file
-
-INSTALL
-
-  See the ./INSTALL file, but quickly
-
-  gems (per node):
-
-    gem >=3.4.3:
-
-      - install sqlite2 (Debian apt-get install libsqlite0-dev)
-      - wget http://rubyforge.org/frs/download.php/1070/sqlite-1.3.1.gem
-      - gem1.8 install sqlite-1.3.1.gem
-      - gem1.8 install posixlock
-      - gem1.8 install arrayfields
-      - gem1.8 install lockfile
-      - gem1.8 install rq-ruby1.8 (or run from source)
-
-    Also available from http://bio4.dnsalias.net/download/gem/ruby1.8/
-
-  manual (cluster wide):
-
-      (note, this procedure is out of date and breaks on gcc 4.4 and later)
-      - download latest release from http://codeforpeople.com/lib/ruby/rq/
-      - tar xvfz rq-X.X.X.tgz
-      - cd rq-X-X-X
-      - cd all
-      - ./install.sh /full/path/to/nfs/mounted/directory/
-
-  Debian flavours:
-
-    see ./INSTALL file for latest
-
 DESCRIPTION
 
-  ruby queue (rq) is a zero-admin zero-configuration tool used to create instant
-  unix clusters.  rq requires only a central nfs filesystem in order to manage a
-  simple sqlite database as a distributed priority work queue.  this simple
-  design allows researchers with minimal unix experience to install and
-  configure, in only a few minutes and without root privileges, a robust unix
-  cluster capable of distributing processes to many nodes - bringing dozens of
-  powerful cpus to their knees with a single blow.  clearly this software should
-  be kept out of the hands of free radicals, seti enthusiasts, and one mr. j
-  safran.
+  ruby queue (rq) is a zero-admin zero-configuration tool used to create
+  instant unix clusters. the simple design allows researchers with minimal unix
+  experience to install and configure, in only a few minutes and without root
+  privileges, a robust unix cluster capable of distributing processes to many
+  nodes - bringing dozens of powerful cpus to their knees with a single blow.
+  clearly this software should be kept out of the hands of free radicals, seti
+  enthusiasts, and one mr. j safran.
 
   the central concept of rq is that n nodes work in isolation to pull jobs
   from an centrally mounted nfs priority work queue in a synchronized fashion.
@@ -174,6 +133,77 @@ DESCRIPTION
   dozens of research centers around the world. while rq is written in
   the Ruby programming language, there is no Ruby programming
   involved in using rq.
+
+QUICK START
+
+  set up a directory for the queue - this can be a local, or an NFS/sshfs
+  mounted drive:
+
+    rq dir create
+
+  on every node create a queue runner, specifying the number of cores (here 8)
+
+    rq dir feed --daemon --log=rq.log --max_feed=8
+
+  submit two jobs - shell type
+   
+    rq dir submit 'sleep 10'
+    rq dir submit 'sleep 9'
+
+  check status
+
+    rq dir status
+
+  shows
+
+        --- 
+        jobs: 
+          pending: 0
+          holding: 0
+          running: 2
+          finished: 0
+          dead: 0
+          total: 2
+        temporal: 
+          running: 
+            min: {2: 00h00m03.49s}
+            max: {1: 00h00m03.60s}
+        performance: 
+          avg_time_per_job: 00h00m00.00s
+          n_jobs_in_last_hrs: 
+            1: 0
+            12: 0
+            24: 0
+        exit_status: 
+          successes: 0
+          failures: 0
+          ok: 0
+
+  Now, that was easy!!
+
+INSTALL
+
+  See the ./INSTALL file, but quickly
+
+  gem >=3.4.4:
+
+    - install sqlite2 (Debian apt-get install libsqlite0-dev)
+    - gem1.8 install rq-ruby1.8 
+
+    Also available from http://bio4.dnsalias.net/download/gem/ruby1.8/
+
+  manual (cluster wide):
+
+      (note, this procedure is out of date and breaks on gcc 4.4 and later)
+      - download latest release from http://codeforpeople.com/lib/ruby/rq/
+      - tar xvfz rq-X.X.X.tgz
+      - cd rq-X-X-X
+      - cd all
+      - ./install.sh /full/path/to/nfs/mounted/directory/
+
+  Debian flavours:
+
+    see ./INSTALL file for latest
 
 INVOCATION
 
@@ -1178,6 +1208,16 @@ DIAGNOSTICS
  success : $? == 0
  failure : $? != 0
 
+URIS
+
+    #{ WEBSITE } - main website
+    http://www.linuxjournal.com/article/7922
+    http://rubyforge.org/projects/codeforpeople/ (original)
+
+LICENSE
+
+   rq is distributed under the BSD license, see the ./LICENSE file
+
 CREDITS
 
   - kim baugh       : patient tester and design input
@@ -1190,7 +1230,7 @@ CREDITS
 
 INSTALL
 
-    gem install rq-ruby1.8 (see top of page)
+    gem1.8 install rq-ruby1.8 (see top of page)
 
 TEST
 
