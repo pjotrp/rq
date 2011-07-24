@@ -92,7 +92,6 @@ test_equal(__LINE__,rq_status()['jobs']['total'],2)
 
 # fire up daemon
 rq_exec("feed --daemon --log=rq.log --max_feed=1 --min_sleep 1 --max_sleep 1")
-5
 sleep(2)
 test_equal(__LINE__,rq_status()['jobs']['total'],2)
 
