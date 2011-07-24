@@ -7,6 +7,12 @@
 #include <ruby/io.h>
 #include <ruby/backward/rubysig.h>
 
+// not in Ruby 1.9
+#ifndef GetWriteFile
+#define GetWriteFile(fp) rb_io_stdio_file(fp)
+#define OpenFile rb_io_t
+#endif
+
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
@@ -109,11 +115,12 @@ rb_file_posixlock (obj, operation)
      VALUE operation;
 {
 #ifndef __CHECKER__
-  rb_io_t *fptr;
+  rb_io_t *fptr = NULL;
   int ret;
 
   rb_secure (2);
   Getrb_io_t (obj, fptr);
+  assert(fptr);
 
   if (fptr->mode & FMODE_WRITABLE)
     {
@@ -154,7 +161,7 @@ rb_file_lockf (obj, cmd, len)
      VALUE len;
 {
 #ifndef __CHECKER__
-  rb_io_t *fptr;
+  rb_io_t *fptr = NULL;
   int ret;
   int pid;
   int f_test;
@@ -164,6 +171,7 @@ rb_file_lockf (obj, cmd, len)
 
   rb_secure (2);
   Getrb_io_t (obj, fptr);
+  assert(fptr);
 
   snprintf (msg, 1024, "path <%s>", (const char *)(STR2CSTR(fptr->pathv)));
 
@@ -190,7 +198,7 @@ retry:
       break;
     case F_TLOCK:
       lock.l_type = F_WRLCK;
-      ret = fcntl (fileno (fptr->stdio_file, F_SETLK, &lock);
+      ret = fcntl (fileno (fptr->stdio_file), F_SETLK, &lock);
       break;
     case F_TLOCKR:
       lock.l_type = F_RDLCK;
@@ -198,12 +206,12 @@ retry:
       break;
     case F_ULOCK:
       lock.l_type = F_UNLCK;
-      ret = fcntl (fileno (fptr->f), F_SETLK, &lock);
+      ret = fcntl (fileno (fptr->stdio_file), F_SETLK, &lock);
       break;
     case F_TEST:
       f_test = 1;
       lock.l_type = F_WRLCK;
-      ret = fcntl (fileno (fptr->f), F_GETLK, &lock);
+      ret = fcntl (fileno (fptr->stdio_file), F_GETLK, &lock);
       if (ret == 0 && lock.l_type != F_UNLCK)
 	{
 	  pid = lock.l_pid;
@@ -212,7 +220,7 @@ retry:
     case F_TESTR:
       f_test = 1;
       lock.l_type = F_RDLCK;
-      ret = fcntl (fileno (fptr->f), F_GETLK, &lock);
+      ret = fcntl (fileno (fptr->stdio_file), F_GETLK, &lock);
       if (ret == 0 && lock.l_type != F_UNLCK)
 	{
 	  pid = lock.l_pid;

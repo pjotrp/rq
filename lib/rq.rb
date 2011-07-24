@@ -74,15 +74,15 @@ unless defined? $__rq__
       end
     end
 
-    begin
-      require 'posixlock'
-    rescue LoadError
-      begin
-        require ARCHLIBDIR + 'posixlock'
-      rescue LoadError
-        abort "require posixlock - http://raa.ruby-lang.org/project/posixlock/"
-      end
-    end
+  #  begin
+  #    require 'posixlock'
+  #  rescue LoadError
+  #    begin
+  #      require ARCHLIBDIR + 'posixlock'
+  #    rescue LoadError
+  #      abort "require posixlock - http://raa.ruby-lang.org/project/posixlock/"
+  #    end
+  #  end
 
   #
   # setup local require/lib/path/environment
