@@ -659,12 +659,12 @@ $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
       def stdin4 jids = nil 
 #--{{{
         if jids
-          File.join @qpath, 'stdin', jids.to_s
+          File.join @qpath, 'stdin', jids.join.to_s
         else
           jids = jids4 @argv
           #STDOUT << "---\n"
           jids.flatten.each do |jid|
-            iopath = File.join @qpath, 'stdin', jid.to_s
+            iopath = File.join @qpath, 'stdin', jid.join.to_s
             #STDOUT << " - " << iopath << "\n"
             puts iopath
           end
@@ -675,12 +675,12 @@ $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
       def stdout4 jids = nil 
 #--{{{
         if jids
-          File.join @qpath, 'stdout', jids.to_s
+          File.join @qpath, 'stdout', jids.join.to_s
         else
           jids = jids4 @argv
           #STDOUT << "---\n"
           jids.flatten.each do |jid|
-            iopath = File.join @qpath, 'stdout', jid.to_s
+            iopath = File.join @qpath, 'stdout', jid.join.to_s
             #STDOUT << " - " << iopath << "\n"
             puts iopath
           end
@@ -691,12 +691,12 @@ $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
       def stderr4 jids = nil 
 #--{{{
         if jids
-          File.join @qpath, 'stderr', jids.to_s
+          File.join @qpath, 'stderr', jids.join.to_s
         else
           jids = jids4 @argv
           #STDOUT << "---\n"
           jids.flatten.each do |jid|
-            iopath = File.join @qpath, 'stderr', jid.to_s
+            iopath = File.join @qpath, 'stderr', jid.join.to_s
             #STDOUT << " - " << iopath << "\n"
             puts iopath
           end
@@ -834,8 +834,8 @@ $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 #--{{{
         log, log_age, log_size, verbosity = 
           @options.values_at 'log', 'log_age', 'log_size', 'verbosity'
-        log_age = atoi log_age rescue nil
-        log_size = atoi log_size rescue nil
+        log_age = log_age.to_i rescue nil
+        log_size = log_size.to_i rescue nil
         $logger = @logger = Logger::new(log || STDERR, log_age, log_size)
       #
       # hack to fix Logger sync bug

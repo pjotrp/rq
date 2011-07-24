@@ -1,6 +1,7 @@
 ---
 
-- migrate to Ruby1.9 (problem is the posixlock module, depending on ruby1.8)
+- migrate to Ruby1.9 
+  - test stdin4, stdout4
 - write some rspec cases
 - create gem in rubygems (for ruby1.9)
 
