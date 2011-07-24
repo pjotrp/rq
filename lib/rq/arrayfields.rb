@@ -366,6 +366,6 @@
           each_pair{|f,v| map.add f,v}
         end
       end
-   end 
+    end 
   end
   Pseudohash = PseudoHash

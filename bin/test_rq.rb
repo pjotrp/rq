@@ -1,4 +1,4 @@
-#! /usr/bin/ruby1.9.1
+#! /usr/bin/ruby -w
 #
 # Test frame work for rq - tests submitting jobs to a queue,
 # and the handling of them. Does not test NFS (yet).
