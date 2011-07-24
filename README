@@ -1,6 +1,6 @@
 NAME
 
-  rq v3.4.6
+  rq v3.4.7
 
 SYNOPSIS
 
@@ -110,7 +110,7 @@ INSTALL
 
   See the ./INSTALL file, but quickly
 
-  gem >=3.4.6:
+  gem >=3.4.7:
 
     - install sqlite2 (Debian apt-get install libsqlite0-dev)
     - gem1.8 install rq-ruby1.8 
