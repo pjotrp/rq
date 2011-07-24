@@ -3,6 +3,7 @@
 #endif
 
 #include <stdio.h>
+#include <assert.h>
 #include <ruby.h>
 #include <ruby/io.h>
 #include <ruby/backward/rubysig.h>
@@ -119,7 +120,7 @@ rb_file_posixlock (obj, operation)
   int ret;
 
   rb_secure (2);
-  Getrb_io_t (obj, fptr);
+  GetOpenFile(obj, fptr);
   assert(fptr);
 
   if (fptr->mode & FMODE_WRITABLE)
@@ -170,7 +171,7 @@ rb_file_lockf (obj, cmd, len)
 
 
   rb_secure (2);
-  Getrb_io_t (obj, fptr);
+  GetOpenFile(obj, fptr);
   assert(fptr);
 
   snprintf (msg, 1024, "path <%s>", (const char *)(STR2CSTR(fptr->pathv)));
