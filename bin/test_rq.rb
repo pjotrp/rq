@@ -69,8 +69,6 @@ end
 # Check dependencies
 print "Running tests...\n"
 
-# require 'rq/sqlite'
-
 kill_rq()
 
 # In the first step we set up the queue
