@@ -136,13 +136,24 @@ DESCRIPTION
 
 QUICK START
 
-  install rq using rubygems
+  install rq using rubygems, after installing sqlite 2.x
 
     gem1.8 install rq-ruby1.8
+
+  the binary is in /var/lib/gems/1.8/bin/, so add that to the path,
+  or create a symbolic link
+
     ln -sf `gem1.8 contents rq-ruby1.8|grep bin/rq$` /usr/local/bin/rq
+
+  now rq should work
+
     rq --help
 
-  set up a directory for the queue - this can be a local, or an NFS/sshfs
+  run the integration test
+
+    /var/lib/gems/1.8/bin/test_rq.rb
+
+  set up a directory for your queue - this can be a local, or an NFS/sshfs
   mounted drive:
 
     rq dir create
