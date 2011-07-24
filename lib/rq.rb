@@ -93,7 +93,6 @@ unless defined? $__rq__
     begin
       $:.unshift ARCHLIBDIR 
       $:.unshift LIBDIR
-      # $:.unshift '/var/lib/gems/1.8/gems/sqlite-1.3.1/lib'
       extdir = File.join(ROOTDIR,'ext')
       $:.unshift extdir
       # p $:
@@ -103,8 +102,8 @@ unless defined? $__rq__
       # print("SQLite.version=",SQLite::Version::STRING,"\n")
 
     rescue LoadError
-      # p $:
-      abort "require sqlite in load path - http://raa.ruby-lang.org/project/sqlite-ruby/"
+      $stderr.print $!,"\n"
+      abort "Shared ext library not found!"
     ensure
       $:.shift
       $:.shift

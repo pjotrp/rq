@@ -31,7 +31,7 @@ task :default => :spec
 
 task :test do
   Dir.chdir('test') do 
-    sh './test_rq.rb'
+    sh '../bin/test_rq.rb'
   end
 end
 

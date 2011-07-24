@@ -22,7 +22,7 @@
 # NOTE: rq still users the older sqlite2 engine and bindings. This will 
 # change.
 
-require '_sqlite4r'
+require '_sqlite4rq'
 require 'time'
 require 'base64'
 
