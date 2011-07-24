@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby1.8
 #
 # Test frame work for rq - tests submitting jobs to a queue,
 # and the handling of them. Does not test NFS (yet).
@@ -72,10 +72,10 @@ print "Running tests...\n"
 # $:.unshift '/var/lib/gems/1.8/gems/sqlite-ruby-2.2.3/lib/'
 # test_equal(__LINE__,SQLite::Version::STRING,"2.2.3")
 
-gempath = '/var/lib/gems/1.8/gems/sqlite-1.3.1/lib'
-error("Expect "+gempath) if !File.directory?(gempath)
-$:.unshift gempath
-require 'sqlite'
+# gempath = '/var/lib/gems/1.8/gems/sqlite-1.3.1/lib'
+# error("Expect "+gempath) if !File.directory?(gempath)
+# $:.unshift gempath
+# require 'rq/sqlite'
 
 kill_rq()
 
