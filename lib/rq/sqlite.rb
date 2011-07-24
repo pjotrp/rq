@@ -64,7 +64,7 @@ module SQLite
         exec( sql, block, arg )
       else
         rows = []
-        exec( sql, proc { |row| rows.push row }, arg )
+        exec( sql, lambda { |row| rows.push row }, arg )
         return rows
       end
     end
@@ -224,7 +224,7 @@ module SQLite
   # conversions in queries (where data is coming out of the database), and not
   # updates (where data is going into the database).
   class TypeTranslator
-    @@default_translator = proc { |type,value| value }
+    @@default_translator = lambda { |type,value| value }
     @@translators = Hash.new( @@default_translator )
 
     # Registers the given block to be used when a value of the given type needs
