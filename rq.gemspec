@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pjotr Prins"]
   s.date = %q{2011-07-24}
-  s.description = %q{Zero configuration job scheduler for computer clusters}
+  s.description = %q{Zero configuration job scheduler for multi-core and computer clusters}
   s.email = %q{pjotr.public01@thebird.nl}
   s.executables = ["rqmailer", "test_rq.rb", "rq"]
   s.extensions = ["ext/extconf.rb"]
