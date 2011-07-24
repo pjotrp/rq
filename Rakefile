@@ -16,7 +16,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/pjotrp/rq"
   gem.license = "BSD"
   gem.summary = %Q{Ruby Queue scheduler}
-  gem.description = %Q{Zero configuration job scheduler for computer clusters}
+  gem.description = %Q{Zero configuration job scheduler for multi-core and computer clusters}
   gem.email = "pjotr.public01@thebird.nl"
   gem.authors = ["Pjotr Prins"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
