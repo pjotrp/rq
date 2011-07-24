@@ -4,15 +4,15 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{rq}
-  s.version = "3.4.5"
+  s.name = %q{rq-ruby1.8}
+  s.version = "3.4.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pjotr Prins"]
-  s.date = %q{2011-07-23}
+  s.date = %q{2011-07-24}
   s.description = %q{Zero configuration job scheduler for computer clusters}
   s.email = %q{pjotr.public01@thebird.nl}
-  s.executables = ["rq", "rqmailer"]
+  s.executables = ["rq", "rqmailer", "test_rq.rb"]
   s.extensions = ["ext/extconf.rb"]
   s.extra_rdoc_files = [
     "LICENSE",
@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "bin/rq",
     "bin/rqmailer",
+    "bin/test_rq.rb",
     "example/a.rb",
     "ext/extconf.rb",
     "ext/sqlite.c",
@@ -82,7 +83,6 @@ Gem::Specification.new do |s|
     "rdoc.sh",
     "rq.gemspec",
     "test/.gitignore",
-    "test/test_rq.rb",
     "white_box/crontab",
     "white_box/joblist",
     "white_box/killrq",

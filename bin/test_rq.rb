@@ -9,10 +9,9 @@ require 'yaml'
 
 print "rq integration test suite by Pjotr Prins 2011\n"
 
-src = File.join('..',File.dirname(__FILE__))
-$: << File.join(src,'lib')
-$rq = File.join(src,'bin','rq');
-raise "Run from test folder!" if !File.executable?($rq)
+src = File.join(File.dirname(__FILE__))
+$rq = File.join(src,'rq');
+# raise "Run from test folder!" if !File.executable?($rq)
 $queue = './test_queue'
 
 def rq_exec(args)
