@@ -22,7 +22,7 @@
 # NOTE: rq still users the older sqlite2 engine and bindings. This will 
 # change.
 
-require '_sqlite'
+require '_sqlite4rq'
 require 'time'
 require 'base64'
 
@@ -64,7 +64,7 @@ module SQLite
         exec( sql, block, arg )
       else
         rows = []
-        exec( sql, proc { |row| rows.push row }, arg )
+        exec( sql, lambda { |row| rows.push row }, arg )
         return rows
       end
     end
@@ -141,7 +141,7 @@ module SQLite
       enums.each do |enum|
         cases << "when \"" <<
                  enum.map { |i| i.to_s.downcase }.join( '", "' ) <<
-                 "\": mode = \"" <<
+                 "\" then mode = \"" <<
                  enum.first.upcase << "\"\n"
       end
 
@@ -179,16 +179,18 @@ module SQLite
     # something that SQLite can understand.
     def fix_pragma_parm( parm )
       case parm
-        when String
+        when String then
           case parm.downcase
-            when "on", "yes", "true", "y", "t": return "'ON'"
-            when "off", "no", "false", "n", "f": return "'OFF'"
+            when "on", "yes", "true", "y", "t" then 
+              return "'ON'"
+            when "off", "no", "false", "n", "f" then 
+              return "'OFF'"
             else
               raise DatabaseException, "unrecognized pragma parameter '#{parm}'"
           end
-        when true, 1
+        when true, 1 then
           return "ON"
-        when false, 0, nil
+        when false, 0, nil then
           return "OFF"
         else
           raise DatabaseException, "unrecognized pragma parameter '#{parm.inspect}'"
@@ -222,7 +224,7 @@ module SQLite
   # conversions in queries (where data is coming out of the database), and not
   # updates (where data is going into the database).
   class TypeTranslator
-    @@default_translator = proc { |type,value| value }
+    @@default_translator = lambda { |type,value| value }
     @@translators = Hash.new( @@default_translator )
 
     # Registers the given block to be used when a value of the given type needs

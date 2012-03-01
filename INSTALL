@@ -175,5 +175,11 @@ create a symbolic link, e.g.
 
   ln -sf `gem1.8 contents rq-ruby1.8|grep bin/rq$` /usr/local/bin/rq
 
+=== can not find mkmf
 
+root@vagrant-debian-squeeze:/home/vagrant# gem1.9.1 install mkmf
+ERROR:  Could not find a valid gem 'mkmf' (>= 0) in any repository
+
+Solution: install the development version of Ruby, for example ruby1.9-dev
+on Debian.
 

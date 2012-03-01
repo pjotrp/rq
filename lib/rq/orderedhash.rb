@@ -152,7 +152,7 @@ class OrderedHash < Hash
     end
     
     def to_s
-	self.to_a.to_s
+	self.to_a.join.to_s
     end
     
     def inspect

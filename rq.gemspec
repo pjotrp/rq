@@ -4,13 +4,13 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{rq-ruby1.8}
+  s.name = %q{rq}
   s.version = "3.4.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Pjotr Prins"]
   s.date = %q{2011-07-24}
-  s.description = %q{Zero configuration job scheduler for computer clusters}
+  s.description = %q{Zero configuration job scheduler for multi-core and computer clusters}
   s.email = %q{pjotr.public01@thebird.nl}
   s.executables = ["rqmailer", "test_rq.rb", "rq"]
   s.extensions = ["ext/extconf.rb"]
@@ -35,10 +35,10 @@ Gem::Specification.new do |s|
     "bin/test_rq.rb",
     "example/a.rb",
     "ext/extconf.rb",
+    "ext/posixlock.c",
     "ext/sqlite.c",
     "extconf.rb",
     "gemspec.rb",
-    "install.rb",
     "lib/rq.rb",
     "lib/rq/arrayfields.rb",
     "lib/rq/backer.rb",
@@ -82,7 +82,7 @@ Gem::Specification.new do |s|
     "lib/rq/usage.rb",
     "lib/rq/util.rb",
     "rdoc.sh",
-    "rq-ruby1.8.gemspec",
+    "rq.gemspec",
     "test/.gitignore",
     "white_box/crontab",
     "white_box/joblist",
@@ -92,6 +92,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/pjotrp/rq}
   s.licenses = ["BSD"]
   s.require_paths = ["lib"]
+  s.rubyforge_project = %q{nowarning}
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Ruby Queue scheduler}
 
@@ -100,20 +101,17 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<posixlock>, [">= 0"])
       s.add_runtime_dependency(%q<arrayfields>, [">= 0"])
       s.add_runtime_dependency(%q<lockfile>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.15"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
     else
-      s.add_dependency(%q<posixlock>, [">= 0"])
       s.add_dependency(%q<arrayfields>, [">= 0"])
       s.add_dependency(%q<lockfile>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.15"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
     end
   else
-    s.add_dependency(%q<posixlock>, [">= 0"])
     s.add_dependency(%q<arrayfields>, [">= 0"])
     s.add_dependency(%q<lockfile>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.15"])

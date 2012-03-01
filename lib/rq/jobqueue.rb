@@ -116,7 +116,7 @@ unless defined? $__rq_jobqueue__
       def submit(*jobs, &block)
 #--{{{
         if jobs.size == 1 and jobs.first.is_a?(String)
-          jobs = [ { "command" => jobs.to_s } ]
+          jobs = [ { "command" => jobs.join.to_s } ]
         end
 
         now = Util::timestamp Time::now

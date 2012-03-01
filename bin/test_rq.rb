@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby1.8
+#! /usr/bin/ruby -w
 #
 # Test frame work for rq - tests submitting jobs to a queue,
 # and the handling of them. Does not test NFS (yet).
@@ -38,7 +38,7 @@ end
 
 def kill_rq()
   pstab = `ps xau|grep rq`
-  pstab.grep(/#{$rq}/) do | s |
+  pstab.split(/\n/).grep(/#{$rq}/) do | s |
     # rq_exec('shutdown')
     s =~ /\S+\s+(\d+)/
     pid = $1
@@ -48,11 +48,11 @@ def kill_rq()
   end
   print `rm -rf #{$queue}`
   pstab = `ps xau|grep rq`
-  pstab.grep(/#{$rq}/) do | s |
+  pstab.split(/\n/).grep(/#{$rq}/) do | s |
     error(__LINE__,"Sorry, still running:\n"+s)
   end
   pstab = `ps xau|grep rq`
-  pstab.grep(/rq_jobrunnerdaemon/) do | s |
+  pstab.split(/\n/).grep(/rq_jobrunnerdaemon/) do | s |
     s =~ /\S+\s+(\d+)/
     pid = $1
     print "+++#{pid}+++\n"
@@ -60,7 +60,7 @@ def kill_rq()
     sleep(1)
   end
   pstab = `ps xau|grep rq`
-  pstab.grep(/rq_jobrunnerdaemon/) do | s |
+  pstab.split(/\n/).grep(/rq_jobrunnerdaemon/) do | s |
     error(__LINE__,"Still running "+s)
   end
 end
@@ -68,14 +68,6 @@ end
 
 # Check dependencies
 print "Running tests...\n"
-
-# $:.unshift '/var/lib/gems/1.8/gems/sqlite-ruby-2.2.3/lib/'
-# test_equal(__LINE__,SQLite::Version::STRING,"2.2.3")
-
-# gempath = '/var/lib/gems/1.8/gems/sqlite-1.3.1/lib'
-# error("Expect "+gempath) if !File.directory?(gempath)
-# $:.unshift gempath
-# require 'rq/sqlite'
 
 kill_rq()
 
@@ -100,7 +92,6 @@ test_equal(__LINE__,rq_status()['jobs']['total'],2)
 
 # fire up daemon
 rq_exec("feed --daemon --log=rq.log --max_feed=1 --min_sleep 1 --max_sleep 1")
-5
 sleep(2)
 test_equal(__LINE__,rq_status()['jobs']['total'],2)
 

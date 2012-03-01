@@ -12,13 +12,14 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "rq-ruby1.8"
+  gem.name = "rq"
   gem.homepage = "http://github.com/pjotrp/rq"
   gem.license = "BSD"
   gem.summary = %Q{Ruby Queue scheduler}
   gem.description = %Q{Zero configuration job scheduler for multi-core and computer clusters}
   gem.email = "pjotr.public01@thebird.nl"
   gem.authors = ["Pjotr Prins"]
+  gem.rubyforge_project = "nowarning"
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
   #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
@@ -30,7 +31,7 @@ task :default => :spec
 
 task :test do
   Dir.chdir('test') do 
-    sh './test_rq.rb'
+    sh '../bin/test_rq.rb'
   end
 end
 

@@ -1,9 +1,13 @@
 ---
 
-- migrate to Ruby1.9 (problem is the posixlock module, depending on ruby1.8)
-- write some rspec cases
+- finalize and test migration to Ruby1.9 
+  - test stdin4, stdout4
+  - disable -w 
+  - avoid hard-coded Ruby interpreter path
+  - add some deeper test cases
 - create gem in rubygems (for ruby1.9)
 
+# The following are on Ara's wish list
 - confine/constrain mechanism
 - heartbeat to slave
 - ls show elapsed time

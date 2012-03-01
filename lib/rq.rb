@@ -10,11 +10,10 @@ unless defined? $__rq__
     WEBSITE = 'https://github.com/pjotrp/rq'
     LIBNAME = 'rq'
     src = File.dirname(__FILE__)
-    VERSION = File.read(File.join(src,'..','VERSION')).strip 
+    VERSION = File.read(File.join(src,'..','VERSION')).strip
     LIBVER = "#{ LIBNAME }-#{ VERSION }"
     DIRNAME = File::dirname(File::expand_path(__FILE__)) + File::SEPARATOR
     ROOTDIR = File::dirname(DIRNAME)
-    #LIBDIR = File::join(DIRNAME, LIBVER) + File::SEPARATOR
     LIBDIR = File::join(DIRNAME, LIBNAME) + File::SEPARATOR
     LOCALDIR = File::join(LIBDIR, 'local') + File::SEPARATOR
     LOCALBINDIR = File::join(LOCALDIR, 'bin') + File::SEPARATOR
@@ -75,15 +74,15 @@ unless defined? $__rq__
       end
     end
 
-    begin
-      require 'posixlock'
-    rescue LoadError
-      begin
-        require ARCHLIBDIR + 'posixlock'
-      rescue LoadError
-        abort "require posixlock - http://raa.ruby-lang.org/project/posixlock/"
-      end
-    end
+  #  begin
+  #    require 'posixlock'
+  #  rescue LoadError
+  #    begin
+  #      require ARCHLIBDIR + 'posixlock'
+  #    rescue LoadError
+  #      abort "require posixlock - http://raa.ruby-lang.org/project/posixlock/"
+  #    end
+  #  end
 
   #
   # setup local require/lib/path/environment
@@ -94,16 +93,17 @@ unless defined? $__rq__
     begin
       $:.unshift ARCHLIBDIR 
       $:.unshift LIBDIR
-      $:.unshift '/var/lib/gems/1.8/gems/sqlite-1.3.1/lib'
-
-      require 'sqlite'
+      extdir = File.join(ROOTDIR,'ext')
+      $:.unshift extdir
+      # p $:
+      require 'rq/sqlite'
       # p $:
       # require 'sqlite/version'
       # print("SQLite.version=",SQLite::Version::STRING,"\n")
 
     rescue LoadError
-      p $:
-      abort "require sqlite in load path - http://raa.ruby-lang.org/project/sqlite-ruby/"
+      $stderr.print $!,"\n"
+      abort "Shared ext library not found!"
     ensure
       $:.shift
       $:.shift
