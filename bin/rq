@@ -1,4 +1,4 @@
-#! /usr/bin/ruby -w
+#! /usr/bin/ruby
 
 $LOAD_PATH.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 # $: << '/var/lib/gems/1.8/gems/rq-ruby1.8-3.x.x/lib'  # locate gem1.8 install
