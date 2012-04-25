@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/pjotrp/rq.png)](http://travis-ci.org/pjotrp/rq)
+
 NAME
 
   rq v3.5.0-pre1 (for Ruby 1.9.x)
