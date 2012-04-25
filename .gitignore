@@ -1,3 +1,4 @@
 pkg/
 ext/Makefile
 test_queue/
+Gemfile.lock
