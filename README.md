@@ -69,7 +69,7 @@ QUICK START
 
   run the integration test
 
-    /var/lib/gems/1.8/bin/test_rq.rb
+    test_rq.rb
 
   set up a directory for your queue - this can be a local, or an NFS/sshfs
   mounted drive:
@@ -118,23 +118,12 @@ QUICK START
 
 INSTALL
 
-  See the ./INSTALL file, but quickly
+  See the notice at the top of this document. Next see the ./INSTALL file, but quickly
 
   gem >=3.4.7:
 
-    - install sqlite2 (Debian apt-get install libsqlite0-dev)
-    - gem1.8 install rq-ruby1.8 
-
-    Also available from http://bio4.dnsalias.net/download/gem/ruby1.8/
-
-  manual (cluster wide):
-
-      (note, this procedure is out of date and breaks on gcc 4.4 and later)
-      - download latest release from http://codeforpeople.com/lib/ruby/rq/
-      - tar xvfz rq-X.X.X.tgz
-      - cd rq-X-X-X
-      - cd all
-      - ./install.sh /full/path/to/nfs/mounted/directory/
+    (- install sqlite2 (Debian apt-get install libsqlite0-dev))
+    - gem install rq-ruby1.9
 
   Debian flavours:
 
@@ -1165,7 +1154,7 @@ CREDITS
 
 INSTALL
 
-    gem1.8 install rq-ruby1.8 (see top of page)
+    gem install rq-ruby1.9 (see also top of page)
 
 TEST
 
