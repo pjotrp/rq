@@ -1,6 +1,17 @@
 NAME
 
-  rq v3.4.7
+  rq v3.5.0-pre1 (for Ruby 1.9.x)
+
+IMPORTANT NOTICE
+
+  The 3.5.0 version of rq is being developed! For a solid and tested
+  rq, install version 3.4.7 for Ruby 1.8! Install this with
+
+    gem install rq-ruby1.8
+  
+  The source and documentation can be found at
+
+    https://github.com/pjotrp/rq/tree/ruby1.8
 
 SYNOPSIS
 
@@ -44,14 +55,13 @@ DESCRIPTION
 
 QUICK START
 
-  install rq using rubygems, after installing sqlite 2.x
+  It is recommended to run rq with Ruby 1.9.x using
+  [rvm](http://beginrescueend.com/)
 
-    gem1.8 install rq-ruby1.8
+  install rq using rubygems, after installing sqlite 2.x (part of the
+  gem now)
 
-  the binary is in /var/lib/gems/1.8/bin/, so add that to the path,
-  or create a symbolic link
-
-    ln -sf `gem1.8 contents rq-ruby1.8|grep bin/rq$` /usr/local/bin/rq
+    gem install rq
 
   now rq should work
 
