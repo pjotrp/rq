@@ -106,6 +106,35 @@ should show
           failures: 0
           ok: 0
 
+=== RPM
+
+Much like the Debian install, but you will need
+
+  yum -y install ruby-devel rubygems sqlite2-devel
+  gem install rq-ruby1.8
+
+note Ruby 1.8.5 bombs out with 
+
+  *** buffer overflow detected ***: /usr/bin/ruby terminated
+  ======= Backtrace: =========
+  /lib64/libc.so.6(__chk_fail+0x2f)[0x33972e6e1f]
+  /usr/lib64/ruby/1.8/x86_64-linux/syck.so(rb_syck_mktime+0x48e)[0x2acb6522f08e]
+
+you need Ruby 1.8.7! Probably a good idea to introduce RVM!
+
+=== RVM
+
+See https://rvm.io/rvm/install/ for installing Ruby 1.8.7. With rvm installed
+
+  source /usr/local/rvm/scripts/rvm
+  rvm install 1.8.6
+  rvm use 1.8.6
+  ruby -v
+  gem env
+  gem install rq-ruby1.8
+
+
+
 === NFS central
 
 The second option is to build and install once and distribute through

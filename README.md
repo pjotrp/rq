@@ -7,23 +7,26 @@ NAME
 IMPORTANT NOTICE
 
   The 3.5.0 version of rq is being developed! For a solid and tested
-  rq, install version 3.4.7 for Ruby 1.8! Install this with
+  rq, you still better install version 3.4.7 for Ruby 1.8! Install
+  this as a Ruby gem
 
     gem install rq-ruby1.8
+
+  With rq-ruby1.8 you have to symlink against the installed rq
+  executable.
   
-  The source and documentation can be found at
-
-    https://github.com/pjotrp/rq/tree/ruby1.8
-
 SYNOPSIS
 
   rq queue mode [mode_args]* [options]*
 
-  ruby queue (rq) is a zero-admin zero-configuration tool used to create
-  instant unix clusters on a multi-core machine, and/or multiple nodes in a
-  network, or in the Cloud. rq requires only a centrally mounted directory
-  (e.g. NFS) in order to manage a simple sqlite database as a distributed
-  priority work queue. See QUICK START below.
+  ruby queue (rq) is a zero-admin zero-configuration tool used to
+  create instant unix clusters on a multi-core machine, and/or
+  multiple heterogeneous nodes in a network, and even in the Cloud. rq
+  shines in its simplicity, and requires only a centrally mounted
+  directory (e.g.  NFS or sshfs) with a simple sqlite database as a
+  distributed priority work queue. 
+  
+  See also INSTALL.txt, and the QUICK START below.
 
 
 DESCRIPTION
@@ -369,6 +372,10 @@ MODES
 
       1) show q's pending jobs
           ~ > rq q list pending
+
+         note that you can achieve the same with
+
+          ~ > rq q query state=running
 
       2) show q's running jobs
           ~ > rq q list running 
