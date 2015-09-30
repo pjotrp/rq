@@ -453,7 +453,7 @@ MODES
     'mode_args' are the same as for list.  
 
     note that it is NOT possible to delete a running job.  rq has a
-    decentralized architechture which means that compute nodes are completely
+    decentralized architecture which means that compute nodes are completely
     independant of one another; an extension is that there is no way to
     communicate the deletion of a running job from the queue the the node
     actually running that job.  it is not an error to force a job to die
